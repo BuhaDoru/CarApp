@@ -33,11 +33,11 @@ public class UserController {
     }
 
     @PostMapping(path="/login/{email}/{password}")
-    public String findByEmailAndPassword(@PathVariable String email, @PathVariable String password) {
+    public ModelAndView findByEmailAndPassword(@PathVariable String email, @PathVariable String password) {
         User user = userService.findByEmailAndPassword(email, password);
         System.out.println("emai:" + email + "password:" + password );
         if (user != null)
-            return "succes";
-        else return "fail";
+            return new ModelAndView("redirect:/user_main_page.html");
+        else return new ModelAndView("redirect:/home_page.html");
     }
 }
