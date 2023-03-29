@@ -1,16 +1,16 @@
 package MainCarApp.service;
 
+import MainCarApp.dto.UserDto;
 import MainCarApp.model.User;
+
+
+
 import java.util.List;
 
 public interface UserService {
+    void saveUser(UserDto userDto);
 
-    public User saveUser(User user);
+    User findUserByEmail(String email);
 
-   public User deleteById(Integer id);
-
-   public List<User> getAllusers();
-
-   public User findByEmailAndPassword(String email, String password);
-
+    List<UserDto> findAllUsers();
 }
