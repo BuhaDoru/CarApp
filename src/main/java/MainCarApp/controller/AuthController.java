@@ -29,7 +29,6 @@ public class AuthController {
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model){
-        // create model object to store form data
         UserDto user = new UserDto();
         model.addAttribute("user", user);
         return "register";
