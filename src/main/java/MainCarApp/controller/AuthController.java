@@ -7,9 +7,7 @@ import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +23,11 @@ public class AuthController {
     @GetMapping("index")
     public String home(){
         return "index";
+    }
+
+    @GetMapping("user_main_page")
+    public String userPage() {
+        return "user_main_page";
     }
 
     @GetMapping("/register")
@@ -64,5 +67,17 @@ public class AuthController {
     @GetMapping("/login")
     public String loginForm(){
         return "login";
+    }
+
+    @DeleteMapping("/deleteById/{id}")
+    public String deleteUser(@PathVariable Long id) {
+        User user = userService.deleteById(id);
+        return "users";
+    }
+
+    @DeleteMapping(value="/eleteById")
+    public String deleteById(@PathVariable Long id) {
+        userService.deleteById(id);
+        return "users";
     }
 }

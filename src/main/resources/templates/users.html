@@ -13,7 +13,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" th:href="@{/index}">Registration and Login System</a>
+    <a class="navbar-brand" th:href="@{/index}">CarApp</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -33,19 +33,74 @@
   <table class="table table-bordered table-hover">
     <thead class="table-dark">
     <tr>
+      <th>Id</th>
       <th>First Name</th>
       <th>Last Name</th>
       <th>Email</th>
+      <th>Role</th>
+      <th>Remove User</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each = "user : ${users}">
+      <td th:text = "${user.id}"></td>
       <td th:text = "${user.firstName}"></td>
       <td th:text = "${user.lastName}"></td>
       <td th:text = "${user.email}"></td>
+      <td th:text = "${user.role}"></td>
+      <td>
+        <form action="#" th:action="@{'/deleteById/{id}'(id=${user.id})}" th:method="delete" >
+          <input type="hidden" name="_method" value="delete" />
+          <button type="submit" class = "btn btn-danger"id="submitButton">Delete User</button>
+        </form>
+      </td>
     </tr>
     </tbody>
   </table>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="text-center">Change User Role</h2>
+        </div>
+        <div class="card-body">
+          <form
+                  method="post"
+                  role="form"
+                  th:action="@{/user_role}"
+                  class="form-horizontal"
+          >
+            <div class="form-group mb-3">
+              <label class="control-label"> Email</label>
+              <input
+                      type="text"
+                      id="username"
+                      name="username"
+                      class="form-control"
+                      placeholder="Enter email address"
+              />
+            </div>
+
+            <div class="form-group mb-3">
+              <label class="control-label">User Role</label>
+              <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      class="form-control"
+                      placeholder="Enter user role"
+              />
+            </div>
+            <div class="form-group mb-3">
+              <button type="submit" class="btn btn-primary" >Change User Role</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 </body>
 </html>

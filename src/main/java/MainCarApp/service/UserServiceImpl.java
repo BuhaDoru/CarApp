@@ -5,6 +5,7 @@ import MainCarApp.model.Role;
 import MainCarApp.model.User;
 import MainCarApp.repository.RoleRepository;
 import MainCarApp.repository.UserRepository;
+import org.springframework.dao.DataAccessException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -32,14 +33,14 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setName(userDto.getFirstName() + " " + userDto.getLastName());
         user.setEmail(userDto.getEmail());
-        // encrypt the password using spring security
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
         Role role = roleRepository.findByName("ROLE_ADMIN");
         if(role == null){
             role = checkRoleExist();
         }
-        user.setRoles(Arrays.asList(role));
+        Role role1 = roleRepository.findByName("ROLE_USER");
+        user.setRoles(Arrays.asList(role,role1));
         userRepository.save(user);
     }
 
@@ -62,6 +63,12 @@ public class UserServiceImpl implements UserService {
         userDto.setFirstName(str[0]);
         userDto.setLastName(str[1]);
         userDto.setEmail(user.getEmail());
+        userDto.setId(user.getId());
+        String rols = "";
+        for (Role role:user.getRoles()) {
+            rols += role.getName() + " ";
+        }
+        userDto.setRole(rols);
         return userDto;
     }
 
@@ -70,4 +77,13 @@ public class UserServiceImpl implements UserService {
         role.setName("ROLE_ADMIN");
         return roleRepository.save(role);
     }
+     @Override
+    public User deleteById(Long id) {
+        try {
+            userRepository.deleteById(id);
+        } catch (DataAccessException e) {
+            System.out.println("Nu exista acest Id!");
+        }
+        return null;
+     }
 }
