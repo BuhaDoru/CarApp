@@ -5,18 +5,21 @@ import MainCarApp.model.Role;
 import MainCarApp.model.User;
 import MainCarApp.repository.RoleRepository;
 import MainCarApp.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
+
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
 
@@ -78,12 +81,8 @@ public class UserServiceImpl implements UserService {
         return roleRepository.save(role);
     }
      @Override
-    public User deleteById(Long id) {
-        try {
-            userRepository.deleteById(id);
-        } catch (DataAccessException e) {
-            System.out.println("Nu exista acest Id!");
-        }
-        return null;
+    public void deleteUserById(Long id) {
+        userRepository.deleteRolesById(id);
+        userRepository.deleteUserById(id);
      }
 }

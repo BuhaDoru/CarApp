@@ -14,5 +14,5 @@ public interface UserService {
 
     List<UserDto> findAllUsers();
 
-    public User deleteById(Long id);
+    void deleteUserById(Long id);
 }

@@ -40,7 +40,7 @@ public class SpringSecurity implements WebMvcConfigurer {
                         form -> form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/users")
+                                .defaultSuccessUrl("/user_main_page")
                                 .permitAll()
                 ).logout(
                         logout -> logout

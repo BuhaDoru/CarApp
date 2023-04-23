@@ -49,7 +49,7 @@
       <td th:text = "${user.email}"></td>
       <td th:text = "${user.role}"></td>
       <td>
-        <form action="#" th:action="@{'/deleteById/{id}'(id=${user.id})}" th:method="delete" >
+        <form action="#" th:action="@{/deleteById/{id}(id=${user.id})}" th:method="post" >
           <input type="hidden" name="_method" value="delete" />
           <button type="submit" class = "btn btn-danger"id="submitButton">Delete User</button>
         </form>

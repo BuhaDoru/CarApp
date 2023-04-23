@@ -4,6 +4,9 @@ import MainCarApp.dto.UserDto;
 import MainCarApp.model.User;
 import MainCarApp.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +17,7 @@ import java.util.List;
 @Controller
 public class AuthController {
 
+    @Autowired
     private UserService userService;
 
     public AuthController(UserService userService) {
@@ -69,15 +73,11 @@ public class AuthController {
         return "login";
     }
 
-    @DeleteMapping("/deleteById/{id}")
-    public String deleteUser(@PathVariable Long id) {
-        User user = userService.deleteById(id);
+
+    @PostMapping("/deleteById/{id}")
+    public String deleteUser(@PathVariable("id") Long id) {
+        userService.deleteUserById(id);
         return "users";
     }
 
-    @DeleteMapping(value="/eleteById")
-    public String deleteById(@PathVariable Long id) {
-        userService.deleteById(id);
-        return "users";
-    }
 }
