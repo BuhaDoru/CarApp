@@ -69,32 +69,32 @@
           <form
                   method="post"
                   role="form"
-                  th:action="@{/user_role}"
+                  th:action="@{/userRole}"
                   class="form-horizontal"
           >
             <div class="form-group mb-3">
-              <label class="control-label"> Email</label>
+              <label class="form-label"> Email</label>
               <input
                       type="text"
-                      id="username"
-                      name="username"
+                      id="email"
+                      name="email"
                       class="form-control"
                       placeholder="Enter email address"
               />
             </div>
 
             <div class="form-group mb-3">
-              <label class="control-label">User Role</label>
+              <label class="form-label">User Role</label>
               <input
-                      type="password"
-                      id="password"
-                      name="password"
+                      type="text"
+                      id="roleName"
+                      name="roleName"
                       class="form-control"
                       placeholder="Enter user role"
               />
             </div>
             <div class="form-group mb-3">
-              <button type="submit" class="btn btn-primary" >Change User Role</button>
+              <button class="btn btn-primary" type="submit">Change User Role</button>
             </div>
           </form>
         </div>

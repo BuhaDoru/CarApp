@@ -15,4 +15,7 @@ public interface UserService {
     List<UserDto> findAllUsers();
 
     void deleteUserById(Long id);
+
+    void changeUserRole(String email, String roleName);
+
 }

@@ -76,8 +76,14 @@ public class AuthController {
 
     @PostMapping("/deleteById/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
+        System.out.println(id);
         userService.deleteUserById(id);
         return "users";
     }
 
+    @PostMapping("/userRole/{email}/roleName")
+    public String changeUserRole(@PathVariable String email, @RequestParam String roleName) {
+        userService.changeUserRole(email, roleName);
+        return "users";
+    }
 }

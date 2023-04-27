@@ -82,7 +82,16 @@ public class UserServiceImpl implements UserService {
     }
      @Override
     public void deleteUserById(Long id) {
-        userRepository.deleteRolesById(id);
         userRepository.deleteUserById(id);
      }
+
+    @Override
+    @Transactional
+    public void changeUserRole(String email, String roleName) {
+        User user = userRepository.findByEmail(email);
+        user.getRoles().remove(0);
+        Role role = roleRepository.findByName(roleName);
+        user.getRoles().add(role);
+        userRepository.save(user);
+    }
 }

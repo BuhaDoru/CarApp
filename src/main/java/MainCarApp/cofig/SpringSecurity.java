@@ -35,6 +35,7 @@ public class SpringSecurity implements WebMvcConfigurer {
                         authorize.requestMatchers("/register/**", "/deleteById/**", "/index").permitAll()
                                 .requestMatchers("/user_main_page").hasRole("ADMIN")
                                 .requestMatchers("/users").hasRole("ADMIN")
+                                .requestMatchers("/userRole/**").hasRole("ADMIN")
 
                 ).formLogin(
                         form -> form
