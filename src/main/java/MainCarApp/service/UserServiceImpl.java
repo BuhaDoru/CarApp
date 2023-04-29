@@ -10,6 +10,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -76,13 +77,24 @@ public class UserServiceImpl implements UserService {
     }
 
     private Role checkRoleExist(){
-        Role role = new Role();
-        role.setName("ROLE_ADMIN");
-        return roleRepository.save(role);
+        List<Role> roles = new ArrayList<>();
+
+        Role adminRole = new Role();
+        adminRole.setName("ROLE_ADMIN");
+        roles.add(adminRole);
+
+        Role userRole = new Role();
+        userRole.setName("ROLE_USER");
+        roles.add(userRole);
+
+        return (Role) roleRepository.saveAll(roles);
     }
      @Override
-    public void deleteUserById(Long id) {
-        userRepository.deleteUserById(id);
+    public void deleteUserById(Long userId) {
+         Optional<User> user = userRepository.findById(userId);
+         if (user.isPresent()) {
+             userRepository.deleteById(userId);
+         }
      }
 
     @Override

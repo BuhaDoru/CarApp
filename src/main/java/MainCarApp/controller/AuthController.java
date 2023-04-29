@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.AttributedString;
 import java.util.List;
 
 @Controller
@@ -74,10 +75,9 @@ public class AuthController {
     }
 
 
-    @PostMapping("/deleteById/{id}")
-    public String deleteUser(@PathVariable("id") Long id) {
-        System.out.println(id);
-        userService.deleteUserById(id);
+    @PostMapping("/deleteById/{userId}")
+    public String deleteUserById(@PathVariable("userId") Long userId) {
+        userService.deleteUserById(userId);
         return "users";
     }
 
