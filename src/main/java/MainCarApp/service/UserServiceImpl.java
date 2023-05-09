@@ -99,11 +99,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void changeUserRole(String email, String roleName) {
+    public void changeUserRole(String email, String role) {
         User user = userRepository.findByEmail(email);
+        int length = user.getRoles().size();
+        System.out.println(length);
+        if (length > 1) {
+            user.getRoles().remove(1);
+        }
         user.getRoles().remove(0);
-        Role role = roleRepository.findByName(roleName);
-        user.getRoles().add(role);
+        Role rol = roleRepository.findByName(role);
+        user.getRoles().add(rol);
         userRepository.save(user);
     }
 }

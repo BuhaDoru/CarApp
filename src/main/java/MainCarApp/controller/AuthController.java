@@ -81,9 +81,10 @@ public class AuthController {
         return "users";
     }
 
-    @PostMapping("/userRole/{email}/roleName")
-    public String changeUserRole(@PathVariable String email, @RequestParam String roleName) {
-        userService.changeUserRole(email, roleName);
+    @PostMapping("/userRole/{email}")
+    public String changeUserRole(@PathVariable String email, @RequestParam String role) {
+        System.out.println(role);
+        userService.changeUserRole(email, role);
         return "users";
     }
 }
