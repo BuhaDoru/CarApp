@@ -102,7 +102,6 @@ public class UserServiceImpl implements UserService {
     public void changeUserRole(String email, String role) {
         User user = userRepository.findByEmail(email);
         int length = user.getRoles().size();
-        System.out.println(length);
         if (length > 1) {
             user.getRoles().remove(1);
         }
