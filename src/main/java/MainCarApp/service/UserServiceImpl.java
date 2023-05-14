@@ -39,12 +39,11 @@ public class UserServiceImpl implements UserService {
         user.setEmail(userDto.getEmail());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
-        Role role = roleRepository.findByName("ROLE_ADMIN");
+        Role role = roleRepository.findByName("ROLE_USER");
         if(role == null){
             role = checkRoleExist();
         }
-        Role role1 = roleRepository.findByName("ROLE_USER");
-        user.setRoles(Arrays.asList(role,role1));
+        user.setRoles(Arrays.asList(role));
         userRepository.save(user);
     }
 
@@ -101,10 +100,6 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void changeUserRole(String email, String role) {
         User user = userRepository.findByEmail(email);
-        int length = user.getRoles().size();
-        if (length > 1) {
-            user.getRoles().remove(1);
-        }
         user.getRoles().remove(0);
         Role rol = roleRepository.findByName(role);
         user.getRoles().add(rol);
