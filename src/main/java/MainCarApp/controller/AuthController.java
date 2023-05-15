@@ -75,13 +75,13 @@ public class AuthController {
     }
 
 
-    @PostMapping("/deleteById/{userId}")
+    @PostMapping("/user/delete/{userId}")
     public String deleteUserById(@PathVariable("userId") Long userId) {
         userService.deleteUserById(userId);
         return "users";
     }
 
-    @PostMapping("/userRole/{email}")
+    @PostMapping("/user/change-role/{email}")
     public String changeUserRole(@PathVariable String email, @RequestParam String role) {
         userService.changeUserRole(email, role);
         return "users";
