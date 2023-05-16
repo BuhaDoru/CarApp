@@ -16,6 +16,6 @@ public interface UserService {
 
     void deleteUserById(Long userId);
 
-    void changeUserRole(String email, String roleName);
+    void changeUserRole(Long id, String roleName);
 
 }

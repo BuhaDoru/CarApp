@@ -5,23 +5,20 @@ import MainCarApp.model.User;
 import MainCarApp.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.AttributedString;
 import java.util.List;
 
 @Controller
-public class AuthController {
+public class UserController {
 
     @Autowired
     private UserService userService;
 
-    public AuthController(UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
@@ -42,7 +39,7 @@ public class AuthController {
         return "register";
     }
 
-    @PostMapping("/register/save")
+    @PostMapping("/register")
     public String registration(@Valid @ModelAttribute("user") UserDto userDto,
                                BindingResult result,
                                Model model){
@@ -75,15 +72,15 @@ public class AuthController {
     }
 
 
-    @PostMapping("/user/delete/{userId}")
+    @PostMapping("/user/{userId}/delete")
     public String deleteUserById(@PathVariable("userId") Long userId) {
         userService.deleteUserById(userId);
         return "users";
     }
 
-    @PostMapping("/user/change-role/{email}")
-    public String changeUserRole(@PathVariable String email, @RequestParam String role) {
-        userService.changeUserRole(email, role);
+    @PostMapping("/user/{id}/change-role")
+    public String changeUserRole(@PathVariable Long id, @RequestParam String role) {
+        userService.changeUserRole(id, role);
         return "users";
     }
 }
