@@ -1,9 +1,9 @@
-package MainCarApp.service;
+package MainCarApp.service.carService;
 
-import MainCarApp.model.Car;
-import MainCarApp.model.CarModel;
-import MainCarApp.repository.CarModelRepository;
-import MainCarApp.repository.CarRepository;
+import MainCarApp.model.carModel.Car;
+import MainCarApp.model.carModel.CarModel;
+import MainCarApp.repository.carService.CarModelRepository;
+import MainCarApp.repository.carService.CarRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,11 +37,18 @@ public class CarService {
         Optional<Car> optionalCar = carRepository.findById(carId);
         if (optionalCar.isPresent()) {
             Car car = optionalCar.get();
-            CarModel carModel = new CarModel();
-            carModel.setModel(modelName);
-            carModel.setCar(car);
-            car.getCarModels().add(carModel);
-            carRepository.save(car);
+            boolean modelExists = car.getCarModels().stream()
+                    .anyMatch(model -> model.getModel().equals(modelName));
+
+            if (modelExists) {
+                System.out.println("This model already exists");
+            } else {
+                CarModel carModel = new CarModel();
+                carModel.setModel(modelName);
+                carModel.setCar(car);
+                car.getCarModels().add(carModel);
+                carRepository.save(car);
+            }
         } else {
             System.out.println("This car doesn't exist");
         }

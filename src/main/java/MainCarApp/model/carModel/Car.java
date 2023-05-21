@@ -1,4 +1,4 @@
-package MainCarApp.model;
+package MainCarApp.model.carModel;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

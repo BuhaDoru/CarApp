@@ -1,5 +1,6 @@
-package MainCarApp.model;
+package MainCarApp.model.carModel;
 
+import MainCarApp.model.carModel.Car;
 import jakarta.persistence.*;
 import lombok.*;
 

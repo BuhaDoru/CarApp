@@ -1,12 +1,11 @@
-package MainCarApp.service;
+package MainCarApp.service.userService;
 
 import MainCarApp.dto.UserDto;
-import MainCarApp.model.Role;
-import MainCarApp.model.User;
-import MainCarApp.repository.RoleRepository;
+import MainCarApp.model.userModel.Role;
+import MainCarApp.model.userModel.User;
+import MainCarApp.repository.userService.RoleRepository;
 import MainCarApp.repository.UserRepository;
 import jakarta.transaction.Transactional;
-import org.springframework.dao.DataAccessException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

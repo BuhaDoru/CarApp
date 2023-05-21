@@ -23,6 +23,9 @@
           <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/user_main_page}">My Cars</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link active" aria-current="page" th:href="@{/cars}">Cars</a>
         </li>
       </ul>
@@ -35,15 +38,15 @@
   </div>
   <table class="table table-bordered table-hover">
     <thead class="table-dark">
-    <tr>
-      <th>Id</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
-      <th>Role</th>
-      <th>Change User Role</th>
-      <th>Remove User</th>
-    </tr>
+      <tr>
+        <th>Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Change User Role</th>
+        <th>Remove User</th>
+      </tr>
     </thead>
     <tbody>
     <tr th:each = "user : ${users}">

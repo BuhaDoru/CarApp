@@ -1,11 +1,9 @@
-package MainCarApp.controller;
+package MainCarApp.controller.carController;
 
-import MainCarApp.model.Car;
 import org.springframework.ui.Model;
-import MainCarApp.model.CarModel;
-import MainCarApp.service.CarService;
+import MainCarApp.model.carModel.CarModel;
+import MainCarApp.service.carService.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,23 +12,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-public class CarController {
+public class Car {
 
     @Autowired
     private CarService carService;
 
-    public CarController(CarService carservice) {
+    public Car(CarService carservice) {
         this.carService = carservice;
     }
 
 
-    @GetMapping("/carModels")
+    @GetMapping("/cars")
     public String showCarModels(Model model) {
-        List<Car> cars = carService.getAllCars();
+        List<MainCarApp.model.carModel.Car> cars = carService.getAllCars();
         List<CarModel> carModels = carService.getAllCarModels();
         model.addAttribute("cars", cars);
         model.addAttribute("carModels", carModels);
-        return "carModels";
+        return "cars";
     }
 
         @PostMapping("/addCar")
@@ -48,7 +46,7 @@ public class CarController {
     @PostMapping("/addModel")
     public String addModel(@RequestParam("carId") Long carId, @RequestParam("modelName") String modelName) {
         carService.addModel(carId, modelName);
-        return "redirect:/carModels";
+        return "redirect:/cars";
     }
 
     @PostMapping("/deleteModel")
