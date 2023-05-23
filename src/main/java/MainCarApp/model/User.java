@@ -1,6 +1,5 @@
-package MainCarApp.model.userModel;
+package MainCarApp.model;
 
-import MainCarApp.model.userModel.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

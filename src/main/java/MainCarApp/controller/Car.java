@@ -1,8 +1,8 @@
-package MainCarApp.controller.carController;
+package MainCarApp.controller;
 
 import org.springframework.ui.Model;
-import MainCarApp.model.carModel.CarModel;
-import MainCarApp.service.carService.CarService;
+import MainCarApp.model.CarModel;
+import MainCarApp.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +24,7 @@ public class Car {
 
     @GetMapping("/cars")
     public String showCarModels(Model model) {
-        List<MainCarApp.model.carModel.Car> cars = carService.getAllCars();
+        List<MainCarApp.model.Car> cars = carService.getAllCars();
         List<CarModel> carModels = carService.getAllCarModels();
         model.addAttribute("cars", cars);
         model.addAttribute("carModels", carModels);

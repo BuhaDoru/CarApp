@@ -1,7 +1,7 @@
-package MainCarApp.controller.userController;
+package MainCarApp.controller;
 
 import MainCarApp.dto.UserDto;
-import MainCarApp.service.userService.UserService;
+import MainCarApp.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,7 +42,7 @@ public class User {
     public String registration(@Valid @ModelAttribute("user") UserDto userDto,
                                BindingResult result,
                                Model model){
-        MainCarApp.model.userModel.User existingUser = userService.findUserByEmail(userDto.getEmail());
+        MainCarApp.model.User existingUser = userService.findUserByEmail(userDto.getEmail());
 
         if(existingUser != null && existingUser.getEmail() != null && !existingUser.getEmail().isEmpty()){
             result.rejectValue("email", null,

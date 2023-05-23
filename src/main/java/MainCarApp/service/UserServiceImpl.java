@@ -1,10 +1,11 @@
-package MainCarApp.service.userService;
+package MainCarApp.service;
 
 import MainCarApp.dto.UserDto;
-import MainCarApp.model.userModel.Role;
-import MainCarApp.model.userModel.User;
-import MainCarApp.repository.userService.RoleRepository;
+import MainCarApp.model.Role;
+import MainCarApp.model.User;
+import MainCarApp.repository.RoleRepository;
 import MainCarApp.repository.UserRepository;
+import MainCarApp.service.UserService;
 import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

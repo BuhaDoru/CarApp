@@ -1,9 +1,9 @@
-package MainCarApp.service.carService;
+package MainCarApp.service;
 
-import MainCarApp.model.carModel.Car;
-import MainCarApp.model.carModel.CarModel;
-import MainCarApp.repository.carService.CarModelRepository;
-import MainCarApp.repository.carService.CarRepository;
+import MainCarApp.model.Car;
+import MainCarApp.model.CarModel;
+import MainCarApp.repository.CarModelRepository;
+import MainCarApp.repository.CarRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,7 +1,7 @@
-package MainCarApp.service.userService;
+package MainCarApp.service;
 
 import MainCarApp.dto.UserDto;
-import MainCarApp.model.userModel.User;
+import MainCarApp.model.User;
 
 
 

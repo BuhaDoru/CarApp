@@ -1,7 +1,7 @@
 package MainCarApp.userDetails;
 
-import MainCarApp.model.userModel.Role;
-import MainCarApp.model.userModel.User;
+import MainCarApp.model.Role;
+import MainCarApp.model.User;
 import MainCarApp.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

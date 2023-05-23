@@ -1,6 +1,6 @@
-package MainCarApp.repository.carService;
+package MainCarApp.repository;
 
-import MainCarApp.model.carModel.CarModel;
+import MainCarApp.model.CarModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
