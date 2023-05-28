@@ -32,7 +32,7 @@ public class SpringSecurity implements WebMvcConfigurer {
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers("/register/**", "/index","/cars").permitAll()
                                 .requestMatchers("/user_main_page").hasAnyRole("USER","ADMIN")
-                                .requestMatchers("/users", "/user/**","/addCar","/deleteCar","/addModel","/deleteModel").hasRole("ADMIN")
+                                .requestMatchers("/users", "/user/**","/Car/add","/Car/delete","/CarModel/add","/CarModel/delete").hasRole("ADMIN")
 
                 ).formLogin(
                         form -> form

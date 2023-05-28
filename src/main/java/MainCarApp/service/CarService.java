@@ -23,42 +23,13 @@ public class CarService {
         return carRepository.findAll();
     }
 
-    public List<CarModel> getAllCarModels() {
-        return carModelRepository.findAll();
-    }
-
     public void addCar(String carName) {
         Car car = new Car();
         car.setName(carName);
         carRepository.save(car);
     }
 
-    public void addModel(Long carId, String modelName) {
-        Optional<Car> optionalCar = carRepository.findById(carId);
-        if (optionalCar.isPresent()) {
-            Car car = optionalCar.get();
-            boolean modelExists = car.getCarModels().stream()
-                    .anyMatch(model -> model.getModel().equals(modelName));
-
-            if (modelExists) {
-                System.out.println("This model already exists");
-            } else {
-                CarModel carModel = new CarModel();
-                carModel.setModel(modelName);
-                carModel.setCar(car);
-                car.getCarModels().add(carModel);
-                carRepository.save(car);
-            }
-        } else {
-            System.out.println("This car doesn't exist");
-        }
-    }
-
     public void deleteCar(Long carId) {
         carRepository.deleteById(carId);
-    }
-
-    public void deleteModel(Long modelId) {
-        carModelRepository.deleteById(modelId);
     }
 }
