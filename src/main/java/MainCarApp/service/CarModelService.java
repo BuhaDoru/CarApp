@@ -14,17 +14,19 @@ public class CarModelService {
 
     private final CarModelRepository carModelRepository;
 
-    public CarModelService(CarModelRepository carModelRepository) {
+    private final CarRepository carRepository;
+    public CarModelService(CarModelRepository carModelRepository, CarRepository carRepository) {
         this.carModelRepository = carModelRepository;
+        this.carRepository = carRepository;
     }
 
     public List<CarModel> getAllCarModels() {
         return carModelRepository.findAll();
     }
     public void addModel(Long carId, String modelName) {
-        Optional<CarModel> optionalCar = carModelRepository.findById(carId);
+        Optional<Car> optionalCar = carRepository.findById(carId);
         if (optionalCar.isPresent()) {
-            Car car = optionalCar.get().getCar();
+            Car car = optionalCar.get();
             boolean modelExists = car.getCarModels().stream()
                     .anyMatch(model -> model.getModel().equals(modelName));
 
@@ -35,7 +37,7 @@ public class CarModelService {
                 carModel.setModel(modelName);
                 carModel.setCar(car);
                 car.getCarModels().add(carModel);
-                CarModelRepository.save(car);
+                carRepository.save(car);
             }
         } else {
             System.out.println("This car doesn't exist");
