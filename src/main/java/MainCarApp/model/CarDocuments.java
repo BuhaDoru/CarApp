@@ -12,8 +12,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="car_details")
-public class CarDetails {
+@Table(name="car_documents")
+public class CarDocuments {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,5 +33,5 @@ public class CarDetails {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private CarDetails carDetails;
+    private CarDocuments carDocuments;
 }

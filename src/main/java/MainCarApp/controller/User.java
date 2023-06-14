@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -81,5 +82,10 @@ public class User {
     public String changeUserRole(@PathVariable Long id, @RequestParam String role) {
         userService.changeUserRole(id, role);
         return "users";
+    }
+
+    @GetMapping("/loggedUser")
+    public String getLoggerUser(Principal principal) {
+        return userService.getLoggedUser();
     }
 }

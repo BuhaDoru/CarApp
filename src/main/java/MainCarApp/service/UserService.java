@@ -18,4 +18,6 @@ public interface UserService {
 
     void changeUserRole(Long id, String roleName);
 
+    String getLoggedUser();
+
 }
