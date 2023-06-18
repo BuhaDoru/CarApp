@@ -1,6 +1,8 @@
 package MainCarApp.controller;
 
 import MainCarApp.dto.UserDto;
+import MainCarApp.model.Car;
+import MainCarApp.model.CarModel;
 import MainCarApp.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

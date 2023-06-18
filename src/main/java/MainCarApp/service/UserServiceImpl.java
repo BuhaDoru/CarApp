@@ -1,11 +1,9 @@
 package MainCarApp.service;
 
 import MainCarApp.dto.UserDto;
-import MainCarApp.model.Role;
-import MainCarApp.model.User;
+import MainCarApp.model.*;
 import MainCarApp.repository.RoleRepository;
 import MainCarApp.repository.UserRepository;
-import MainCarApp.service.UserService;
 import jakarta.transaction.Transactional;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,6 +24,7 @@ public class UserServiceImpl implements UserService {
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
 
+
     public UserServiceImpl(UserRepository userRepository,
                            RoleRepository roleRepository,
                            PasswordEncoder passwordEncoder) {
@@ -40,7 +39,6 @@ public class UserServiceImpl implements UserService {
         user.setName(userDto.getFirstName() + " " + userDto.getLastName());
         user.setEmail(userDto.getEmail());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-
         Role role = roleRepository.findByName("ROLE_USER");
         if(role == null){
             role = checkRoleExist();
@@ -118,4 +116,5 @@ public class UserServiceImpl implements UserService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication.getName();
     }
+
 }

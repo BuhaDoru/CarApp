@@ -3,6 +3,9 @@ package MainCarApp.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -22,4 +25,6 @@ public class CarModel {
     @JoinColumn(name = "car_id")
     private Car car;
 
+    @OneToMany(mappedBy = "carModel")
+    private List<User> users = new ArrayList<>();
 }

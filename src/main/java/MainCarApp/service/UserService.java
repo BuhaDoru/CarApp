@@ -1,6 +1,8 @@
 package MainCarApp.service;
 
 import MainCarApp.dto.UserDto;
+import MainCarApp.model.Car;
+import MainCarApp.model.CarModel;
 import MainCarApp.model.User;
 
 

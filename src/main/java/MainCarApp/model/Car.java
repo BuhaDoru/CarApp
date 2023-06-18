@@ -27,4 +27,7 @@ public class Car {
 
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CarModel> carModels = new ArrayList<>();
+
+    @ManyToMany (mappedBy = "cars", cascade = CascadeType.ALL)
+    private List<User> users;
 }
