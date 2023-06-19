@@ -25,6 +25,6 @@ public class CarModel {
     @JoinColumn(name = "car_id")
     private Car car;
 
-    @OneToMany(mappedBy = "carModel")
-    private List<User> users = new ArrayList<>();
+    @ManyToMany (mappedBy = "carModel", cascade = CascadeType.ALL)
+    private List<User> users;
 }

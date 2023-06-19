@@ -48,8 +48,11 @@ public class User {
             inverseJoinColumns={@JoinColumn(name="CAR_ID", referencedColumnName="ID")})
     private List<Car> cars = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "CAR_MODEL_ID", referencedColumnName = "ID")
-    private CarModel carModel;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name="users_cars",
+            joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")},
+            inverseJoinColumns={@JoinColumn(name="CARMODEL_ID", referencedColumnName="ID")})
+    private List<CarModel> carModel = new ArrayList<>();
 
 }
