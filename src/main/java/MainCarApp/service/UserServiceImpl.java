@@ -2,6 +2,7 @@ package MainCarApp.service;
 
 import MainCarApp.dto.UserDto;
 import MainCarApp.model.*;
+import MainCarApp.repository.CarModelRepository;
 import MainCarApp.repository.RoleRepository;
 import MainCarApp.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -24,13 +25,17 @@ public class UserServiceImpl implements UserService {
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
 
+    private CarModelRepository carModelRepository;
+
 
     public UserServiceImpl(UserRepository userRepository,
                            RoleRepository roleRepository,
-                           PasswordEncoder passwordEncoder) {
+                           PasswordEncoder passwordEncoder,
+                            CarModelRepository carModelRepository){
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.carModelRepository = carModelRepository;
     }
 
     @Override
@@ -115,6 +120,20 @@ public class UserServiceImpl implements UserService {
     public String getLoggedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication.getName();
+    }
+
+    @Override
+    public void addUserCar(Long id, Long modelId) {
+        Optional<User> optionalUser = userRepository.findById(id);
+        Optional<CarModel> optionalModel = carModelRepository.findById(modelId);
+        if (optionalUser.isPresent() && optionalModel.isPresent()) {
+            User user = optionalUser.get();
+            CarModel model = optionalModel.get();
+            user.getCarModel().add(model);
+            userRepository.save(user);
+        } else {
+            System.out.println("Uer-ul sau modelul de masina nu exista");
+        }
     }
 
 }

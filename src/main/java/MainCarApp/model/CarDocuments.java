@@ -19,16 +19,13 @@ public class CarDocuments {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "VIN", nullable = false, unique = true)
-    private Long VIN;
-
-    @Column(name = "ITP", nullable = false)
+    @Column(name = "ITP", nullable = true)
     private String ITP;
 
-    @Column(name = "Asigurare", nullable = false)
+    @Column(name = "Asigurare", nullable = true)
     private String asigurare;
 
-    @Column(name = "Vinieta", nullable = false)
+    @Column(name = "Vinieta", nullable = true)
     private String vinieta;
 
     @ManyToOne(fetch = FetchType.LAZY)

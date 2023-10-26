@@ -26,5 +26,5 @@ public class CarModel {
     private Car car;
 
     @ManyToMany (mappedBy = "carModel", cascade = CascadeType.ALL)
-    private List<User> users;
+    private List<User> users = new ArrayList<>();
 }

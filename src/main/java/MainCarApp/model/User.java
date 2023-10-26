@@ -39,20 +39,13 @@ public class User {
     private List<Role> roles = new ArrayList<>();
 
     @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CarDocuments> carDetails = new ArrayList<>();
+    private List<CarDocuments> carDocuments = new ArrayList<>();
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name="users_cars",
             joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")},
-            inverseJoinColumns={@JoinColumn(name="CAR_ID", referencedColumnName="ID")})
-    private List<Car> cars = new ArrayList<>();
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name="users_cars",
-            joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")},
-            inverseJoinColumns={@JoinColumn(name="CARMODEL_ID", referencedColumnName="ID")})
+            inverseJoinColumns={@JoinColumn(name="MODEL_ID", referencedColumnName="ID")})
     private List<CarModel> carModel = new ArrayList<>();
-
 }
