@@ -7,6 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,7 +23,7 @@ public class CarDocuments {
     private Long id;
 
     @Column(name = "ITP", nullable = true)
-    private String ITP;
+    private String itp;
 
     @Column(name = "Asigurare", nullable = true)
     private String asigurare;
@@ -28,7 +31,14 @@ public class CarDocuments {
     @Column(name = "Vinieta", nullable = true)
     private String vinieta;
 
+    @Column(name = "NrInmatriculare", nullable = true)
+    private String nrInmatriculare;
+
+    @Column(name = "CarModel", nullable = true)
+    private String carModel;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private CarDocuments carDocuments;
+
 }

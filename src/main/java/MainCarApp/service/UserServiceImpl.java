@@ -129,7 +129,7 @@ public class UserServiceImpl implements UserService {
         if (optionalUser.isPresent() && optionalModel.isPresent()) {
             User user = optionalUser.get();
             CarModel model = optionalModel.get();
-            user.getCarModel().add(model);
+            //user.getCarModel().add(model);
             userRepository.save(user);
         } else {
             System.out.println("Uer-ul sau modelul de masina nu exista");

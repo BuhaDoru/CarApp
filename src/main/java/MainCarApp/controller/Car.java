@@ -34,14 +34,6 @@ public class Car {
         return "cars";
     }
 
-   /* @GetMapping("/user_main_page")
-    public String showCars(Model model) {
-        List<MainCarApp.model.Car> cars = carService.getAllCars();
-        List<CarModel> carModels = carModelService.getAllCarModels();
-        model.addAttribute("cars", cars);
-        model.addAttribute("carsModel", carModels);
-        return "user_main_page";
-    }*/
         @PostMapping("/Car/add")
     public String addCar(@RequestParam("carName") String carName) {
         carService.addCar(carName);

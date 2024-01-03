@@ -24,7 +24,4 @@ public class CarModel {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "car_id")
     private Car car;
-
-    @ManyToMany (mappedBy = "carModel", cascade = CascadeType.ALL)
-    private List<User> users = new ArrayList<>();
 }

@@ -93,8 +93,6 @@ public class User {
 
     @PostMapping("/user/addCar")
     public String addUserCar(@RequestParam Long id, @RequestParam Long modelId) {
-        System.out.println(id);
-        System.out.println(modelId);
         userService.addUserCar(id, modelId);
         return "user_main_page";
     }

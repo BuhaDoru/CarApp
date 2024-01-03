@@ -9,6 +9,8 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hibernate.TimeZoneStorageStrategy.COLUMN;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -42,10 +44,4 @@ public class User {
     private List<CarDocuments> carDocuments = new ArrayList<>();
 
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name="users_cars",
-            joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")},
-            inverseJoinColumns={@JoinColumn(name="MODEL_ID", referencedColumnName="ID")})
-    private List<CarModel> carModel = new ArrayList<>();
 }
