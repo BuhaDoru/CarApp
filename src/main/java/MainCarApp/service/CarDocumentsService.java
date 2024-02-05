@@ -1,11 +1,15 @@
 package MainCarApp.service;
 
+import MainCarApp.model.Car;
 import MainCarApp.model.CarDocuments;
 import MainCarApp.repository.CarDocumentsRepository;
 import MainCarApp.repository.CarModelRepository;
 import MainCarApp.repository.CarRepository;
 import MainCarApp.repository.UserRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @Service
 public class CarDocumentsService {
 
@@ -30,5 +34,9 @@ public class CarDocumentsService {
         carDocuments.setNrInmatriculare(nrInmatriculare);
         carDocuments.setCarModel(carModel);
         carDocumentsRepository.save(carDocuments);
+    }
+
+    public List<CarDocuments> getAllCarDocuments() {
+        return carDocumentsRepository.findAll();
     }
 }

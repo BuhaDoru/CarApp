@@ -1,7 +1,5 @@
 package MainCarApp.controller;
 
-import MainCarApp.model.Car;
-import MainCarApp.model.CarModel;
 import MainCarApp.service.CarDocumentsService;
 import MainCarApp.service.CarModelService;
 import MainCarApp.service.CarService;
@@ -28,18 +26,16 @@ public class CarDocuments {
         this.carDocumentsService = carDocumentsService;
     }
 
-    @GetMapping("/allCars")
-    public String showCars(Model model) {
-        List<Car> allCars = carService.getAllCars();
-        List<CarModel> allCarModels = carModelService.getAllCarModels();
-        model.addAttribute("allCars", allCars);
-        model.addAttribute("allCarsModel", allCarModels);
+    @GetMapping("/allCarDocuments")
+    public String showCarDocuments(Model model) {
+        List<MainCarApp.model.CarDocuments> allCarDocuments = carDocumentsService.getAllCarDocuments();
+        model.addAttribute("allCarDocuments");
         return "user_main_page";
     }
 
-    @GetMapping("/documents/add")
-    public String addDocuments(@RequestParam String Vinieta, @RequestParam String Asigurare, @RequestParam String ITP, @RequestParam String NrInmatriculare, @RequestParam String CarModel) {
-        carDocumentsService.addCarDocuments(ITP, Asigurare, Vinieta, NrInmatriculare, CarModel);
+    @PostMapping("/documents/add")
+    public String addDocuments(@RequestParam ("CarModel") String CarModel, @RequestParam ("NrInmatriculare")String NrInmatriculare, @RequestParam ("ITP") String ITP, @RequestParam ("Asigurare") String Asigurare,  @RequestParam ("Vinieta") String Vinieta) {
+        carDocumentsService.addCarDocuments(CarModel, NrInmatriculare, ITP, Asigurare, Vinieta);
         return "/user_main_page";
     }
 }
