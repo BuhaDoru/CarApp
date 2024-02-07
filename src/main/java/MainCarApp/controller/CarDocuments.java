@@ -29,8 +29,8 @@ public class CarDocuments {
     @GetMapping("/allCarDocuments")
     public String showCarDocuments(Model model) {
         List<MainCarApp.model.CarDocuments> allCarDocuments = carDocumentsService.getAllCarDocuments();
-        model.addAttribute("allCarDocuments");
-        return "user_main_page";
+        model.addAttribute("allCarDocuments", allCarDocuments);
+        return "allCarDocuments";
     }
 
     @PostMapping("/documents/add")

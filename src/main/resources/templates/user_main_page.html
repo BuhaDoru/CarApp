@@ -36,6 +36,41 @@
     </nav>
     <br/><br/><br/>
     <div class="container">
+        <div class="row col-md-10">
+        <h2>This are your cars</h2>
+        </div>
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th>Marca</th>
+                <th>Model</th>
+                <th>ITP</th>
+                <th>Asigurare</th>
+                <th>Vinieta</th>
+                <th>Numar inmatriculare</th>
+                <th>Remove Car</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each = "carDocuments : ${allCarDocuments}">
+                <td th:text = "${carDocuments.id}"></td>
+                <td th:text = "${carDocuments.model}"></td>
+                <td th:text = "${carDocuments.ITP}"></td>
+                <td th:text = "${carDocuments.asigurare}"></td>
+                <td th:text = "${carDocuments.vinieta}"></td>
+                <td th:text = "${carDocuments.nrInmatriculare}"></td>
+                <td>
+                    <form action="#" th:action="@{/user/{userId}/delete(userId=${user.id})}" th:method="post" >
+                        <input type="hidden" name="_method" value="delete" />
+                        <button type="submit" class = "btn btn-danger"id="submitButton" onclick="return confirm('Are you sure you want to delete this user?')">Delete User</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+    <div class="container">
         <h1>Add your car here!</h1>
         <form th:action="@{/documents/add}" method="post">
             <div class="form-group">
