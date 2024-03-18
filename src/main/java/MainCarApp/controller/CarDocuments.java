@@ -30,12 +30,19 @@ public class CarDocuments {
     public String showCarDocuments(Model model) {
         List<MainCarApp.model.CarDocuments> allCarDocuments = carDocumentsService.getAllCarDocuments();
         model.addAttribute("allCarDocuments", allCarDocuments);
-        return "allCarDocuments";
+        return "/user_main_page";
     }
 
     @PostMapping("/documents/add")
-    public String addDocuments(@RequestParam ("CarModel") String CarModel, @RequestParam ("NrInmatriculare")String NrInmatriculare, @RequestParam ("ITP") String ITP, @RequestParam ("Asigurare") String Asigurare,  @RequestParam ("Vinieta") String Vinieta) {
-        carDocumentsService.addCarDocuments(CarModel, NrInmatriculare, ITP, Asigurare, Vinieta);
+    public String addDocuments(@RequestParam ("ITP") String ITP, @RequestParam ("Asigurare") String Asigurare, @RequestParam ("Vinieta") String Vinieta,@RequestParam ("NrInmatriculare")String NrInmatriculare, @RequestParam ("CarModel") String CarModel) {
+        carDocumentsService.addCarDocuments(ITP, Asigurare, Vinieta, NrInmatriculare, CarModel);
+        return "/user_main_page";
+    }
+
+    @PostMapping("/documents/delete")
+    public String deleteDocuments(@RequestParam("documentsId") Long documentsId) {
+        carDocumentsService.deleteDocuments(documentsId);
+        System.out.println(documentsId);
         return "/user_main_page";
     }
 }

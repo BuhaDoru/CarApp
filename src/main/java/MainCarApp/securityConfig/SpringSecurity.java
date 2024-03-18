@@ -30,8 +30,8 @@ public class SpringSecurity implements WebMvcConfigurer {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
-                        authorize.requestMatchers("/register/**", "/index", "/cars", "/allCars", "/loggedUser", "/user/**").permitAll()
-                                .requestMatchers("/user_main_page", "/documents/add").hasAnyRole("USER","ADMIN")
+                        authorize.requestMatchers("/register/**", "/index", "/cars", "/allCars","/allCarDocuments", "/loggedUser", "/user/**").permitAll()
+                                .requestMatchers("/user_main_page", "/documents/**").hasAnyRole("USER","ADMIN")
                                 .requestMatchers("/users","/Car/add","/Car/delete","/CarModel/add","/CarModel/delete").hasRole("ADMIN")
 
                 ).formLogin(

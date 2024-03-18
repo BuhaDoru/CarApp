@@ -39,4 +39,8 @@ public class CarDocumentsService {
     public List<CarDocuments> getAllCarDocuments() {
         return carDocumentsRepository.findAll();
     }
+
+    public void deleteDocuments(Long documentsId) {
+        carDocumentsRepository.deleteById(documentsId);
+    }
 }
