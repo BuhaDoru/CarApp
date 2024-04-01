@@ -29,10 +29,6 @@ public class User {
         return "index";
     }
 
-    @GetMapping("user_main_page")
-    public String userPage() {
-        return "user_main_page";
-    }
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model){
@@ -91,9 +87,4 @@ public class User {
         return userService.getLoggedUser();
     }
 
-    @PostMapping("/user/addCar")
-    public String addUserCar(@RequestParam Long id, @RequestParam Long modelId) {
-        userService.addUserCar(id, modelId);
-        return "user_main_page";
-    }
 }

@@ -36,13 +36,13 @@ public class CarDocuments {
     @PostMapping("/documents/add")
     public String addDocuments(@RequestParam ("ITP") String ITP, @RequestParam ("Asigurare") String Asigurare, @RequestParam ("Vinieta") String Vinieta,@RequestParam ("NrInmatriculare")String NrInmatriculare, @RequestParam ("CarModel") String CarModel) {
         carDocumentsService.addCarDocuments(ITP, Asigurare, Vinieta, NrInmatriculare, CarModel);
-        return "/user_main_page";
+        return "redirect:/allCarDocuments";
     }
 
     @PostMapping("/documents/delete")
     public String deleteDocuments(@RequestParam("documentsId") Long documentsId) {
         carDocumentsService.deleteDocuments(documentsId);
         System.out.println(documentsId);
-        return "/user_main_page";
+        return "redirect:/allCarDocuments";
     }
 }
