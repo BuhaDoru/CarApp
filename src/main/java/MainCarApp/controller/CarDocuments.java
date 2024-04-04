@@ -1,5 +1,6 @@
 package MainCarApp.controller;
 
+import MainCarApp.model.CarModel;
 import MainCarApp.service.CarDocumentsService;
 import MainCarApp.service.CarModelService;
 import MainCarApp.service.CarService;
@@ -30,6 +31,10 @@ public class CarDocuments {
     public String showCarDocuments(Model model) {
         List<MainCarApp.model.CarDocuments> allCarDocuments = carDocumentsService.getAllCarDocuments();
         model.addAttribute("allCarDocuments", allCarDocuments);
+        List<MainCarApp.model.Car> allCars = carService.getAllCars();
+        List<CarModel> allCarModels= carModelService.getAllCarModels();
+        model.addAttribute("allCars", allCars);
+        model.addAttribute("allCarModels", allCarModels);
         return "/user_main_page";
     }
 
@@ -45,4 +50,6 @@ public class CarDocuments {
         System.out.println(documentsId);
         return "redirect:/allCarDocuments";
     }
+
+
 }

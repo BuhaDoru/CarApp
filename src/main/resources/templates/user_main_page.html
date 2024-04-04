@@ -76,9 +76,23 @@
         <h1>Add your car here!</h1>
         <form th:action="@{/documents/add}" method="post">
             <div class="form-group">
-                <label for="CarModel">Model masina:</label>
-                <input type="text" id="CarModel" name="CarModel" class="form-control" required="required" style="width: 300px;">
+                <label for="CarMake">Marca masina:</label>
+                <div class="input-group">
+                    <select class="custom-select" id="CarMake" name="carId">
+                        <option th:each="car : ${allCars}" th:value="${car.id}" th:text="${car.name}"></option>
+                    </select>
+                </div>
             </div>
+
+            <div class="form-group">
+                <label for="CarModel">Model masina:</label>
+                <div class="input-group">
+                    <select class="custom-select" id="CarModel" name="CarModel">
+                        <option th:each="carModel : ${allCarModels}" th:value="${carModel.model}" th:text="${carModel.model}"></option>
+                    </select>
+                </div>
+            </div>
+
             <div class="form-group">
                 <label for="NrInmatriculare">Nr. Inmatriculare:</label>
                 <input type="text" id="NrInmatriculare" name="NrInmatriculare" class="form-control" required="required" style="width: 300px;">
