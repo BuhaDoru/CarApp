@@ -2,6 +2,7 @@ package MainCarApp.service;
 
 import MainCarApp.model.Car;
 import MainCarApp.model.CarDocuments;
+import MainCarApp.model.User;
 import MainCarApp.repository.CarDocumentsRepository;
 import MainCarApp.repository.CarModelRepository;
 import MainCarApp.repository.CarRepository;
@@ -9,6 +10,7 @@ import MainCarApp.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CarDocumentsService {
@@ -26,13 +28,14 @@ public class CarDocumentsService {
         this.userRepository = userRepository;
     }
 
-    public void addCarDocuments(String itp, String asigurare, String vinieta, String nrInmatriculare, String carModel) {
+    public void addCarDocuments(String itp, String asigurare, String vinieta, String nrInmatriculare, String carModel, String email) {
         CarDocuments carDocuments = new CarDocuments();
         carDocuments.setItp(itp);
         carDocuments.setAsigurare(asigurare);
         carDocuments.setVinieta(vinieta);
         carDocuments.setNrInmatriculare(nrInmatriculare);
         carDocuments.setCarModel(carModel);
+        carDocuments.setEmail(email);
         carDocumentsRepository.save(carDocuments);
     }
 

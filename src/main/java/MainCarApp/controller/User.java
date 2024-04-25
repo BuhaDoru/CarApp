@@ -83,8 +83,10 @@ public class User {
     }
 
     @GetMapping("/loggedUser")
-    public String getLoggerUser(Principal principal) {
-        return userService.getLoggedUser();
+    public String getUsername(Model model) {
+        String loggedUser = userService.getLoggedUser();
+        model.addAttribute("username", loggedUser);
+        return "username";
     }
 
 }

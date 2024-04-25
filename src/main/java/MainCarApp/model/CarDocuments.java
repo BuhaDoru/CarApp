@@ -37,8 +37,6 @@ public class CarDocuments {
     @Column(name = "CarModel", nullable = true)
     private String carModel;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private CarDocuments carDocuments;
-
+    @Column(name = "Email", nullable = true)
+    private String email;
 }

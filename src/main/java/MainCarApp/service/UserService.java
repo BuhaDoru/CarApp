@@ -20,8 +20,6 @@ public interface UserService {
 
     void changeUserRole(Long id, String roleName);
 
-    void addUserCar(Long id, Long modelId);
-
     String getLoggedUser();
 
 }

@@ -8,6 +8,7 @@ import MainCarApp.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -119,20 +120,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public String getLoggedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getName();
-    }
-
-    @Override
-    public void addUserCar(Long id, Long modelId) {
-        Optional<User> optionalUser = userRepository.findById(id);
-        Optional<CarModel> optionalModel = carModelRepository.findById(modelId);
-        if (optionalUser.isPresent() && optionalModel.isPresent()) {
-            User user = optionalUser.get();
-            CarModel model = optionalModel.get();
-            userRepository.save(user);
-        } else {
-            System.out.println("User-ul sau modelul de masina nu exista");
+        if (authentication != null && authentication.isAuthenticated()) {
+            Object principal = authentication.getPrincipal();
+            if (principal instanceof UserDetails) {
+                return ((UserDetails) principal).getUsername();
+            } else {
+                return principal.toString();
+            }
         }
+        return null;
     }
 
 }
